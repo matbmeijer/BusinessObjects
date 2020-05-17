@@ -17,6 +17,8 @@ Objects is not Open Source.
 
   - Log-on to SAP Business Objects REST API
   - Retrieve schedules from a SAP Business Objects document ID
+  - Retrieve details (frequency, parameters, etc.) of a specific
+    schedule from a SAP Business Objects document ID
   - Log-off from the SAP Business Objects REST API
 
 [Documentation for the WEB

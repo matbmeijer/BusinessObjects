@@ -148,3 +148,40 @@ get_document_schedules <- function(domain, document_id){
   colnames(df) <- col_names
   return(df)
 }
+
+
+#' @title Retrieve Business Objects document' schedule details
+#' @description Retrieves the details of a specific schedule ID of a SAP Business Objects document with information about document parameters & frequency.
+#' @param domain SAP Business Objects domain
+#' @param document_id Document ID of the SAP Business Objects Document
+#' @param schedule_id Schedule ID of the specific SAP Business Objects Document. Can be obtained through the \code{get_document_schedules()} function.
+#' @return Returns details about the SAP Business Objects schedule.
+#' @author Matthias Brenninkmeijer - \href{https://github.com/matbmeijer}{https://github.com/matbmeijer}
+#' @examples
+#' \dontrun{
+#' get_schedule_details(domain="YOUR_DOMAIN",
+#'                      document_id="YOUR_DOCUMENT_ID",
+#'                      schedule_id="YOUR_SCHEDULE_ID")
+#' }
+#' @export
+
+get_schedule_details <- function(domain, document_id, schedule_id){
+  url <- httr::modify_url(domain,
+                          path = list("biprws",
+                                      "raylight",
+                                      "v1",
+                                      "documents",
+                                      document_id,
+                                      "schedules",
+                                      schedule_id))
+  get_schedule_details <- httr::GET(url, httr::add_headers(get_token(),
+                                                             c("Accept"="application/json")))
+  if (httr::http_type(get_schedule_details) != "application/json") {
+    stop("API did not return json", call. = FALSE)
+  }
+  #Format the data to a data.frame
+  content <- jsonlite::fromJSON(httr::content(get_schedule_details, "text",
+                                              encoding = "UTF-8"),
+                                simplifyDataFrame = TRUE)
+  return(content$schedule)
+}
