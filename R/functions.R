@@ -14,6 +14,14 @@ get_token <- function(){
   return(token)
 }
 
+unnest_df <- function(x) {
+  y <- do.call(data.frame, c(x, list(stringsAsFactors=FALSE)))
+  if("data.frame" %in% unlist(lapply(y, class))){
+    y<-unnest_df(y)
+  }
+  return(y)
+}
+
 #' @title Logs into SAP Business Objects
 #' @description Logs into SAP Business Objects and saves the SAP Business Objects API token into the System Environment
 #' @param domain SAP Business Objects domain to log into
@@ -78,7 +86,7 @@ log_on <- function(domain, username, password, authentication_type="secLDAP"){
 
 #' @title Logs off from the SAP Business Objects
 #' @description Logs off from the SAP Business Objects session and removes the SAP Business Objects API token from the System Environment
-#' @param domain SAP Business Objects domain to log into
+#' @param domain SAP Business Objects domain to log off from
 #' @return Does not return any object, only a success message, as SAP API token is removed from the environment.
 #' @author Matthias Brenninkmeijer - \href{https://github.com/matbmeijer}{https://github.com/matbmeijer}
 #' @section Warning: Please be careful when dealing with API keys and other
@@ -100,4 +108,43 @@ log_off <- function(domain){
     Sys.unsetenv("x_sap_logontoken")
     message("Logoff process succesfull. SAP Logon Token deleted from system environment.")
   }
+}
+
+
+#' @title Retrieve Business Objects document schedules
+#' @description Retrieves the schedules for a specific document ID and returns a tidy \code{data.frame} with detailed information.
+#' @param domain SAP Business Objects domain
+#' @param document_id Document ID of the SAP Business Objects Document
+#' @return Returns a tidy \code{data.frame} with detailed information about the documents' schedules.
+#' @author Matthias Brenninkmeijer - \href{https://github.com/matbmeijer}{https://github.com/matbmeijer}
+#' @examples
+#' \dontrun{
+#' get_document_schedules(domain="YOUR_DOMAIN",
+#'                        document_id="YOUR_DOCUMENT_ID")
+#' }
+#' @export
+
+get_document_schedules <- function(domain, document_id){
+  url <- httr::modify_url(domain,
+                          path = list("biprws",
+                                      "raylight",
+                                      "v1",
+                                      "documents",
+                                      document_id,
+                                      "schedules"))
+  get_document_schedules <- httr::GET(url, httr::add_headers(get_token(),
+                                                             c("Accept"="application/json")))
+  if (httr::http_type(get_document_schedules) != "application/json") {
+    stop("API did not return json", call. = FALSE)
+  }
+  #Format the data to a data.frame
+  content <- jsonlite::fromJSON(httr::content(get_document_schedules, "text",
+                                              encoding = "UTF-8"),
+                                simplifyDataFrame = TRUE)
+  df <- unnest_df(content$schedules$schedule)
+  col_names <- colnames(df)
+  col_names <- gsub("^X\\.", "", col_names)
+  col_names <- gsub("\\.\\.", "", col_names)
+  colnames(df) <- col_names
+  return(df)
 }

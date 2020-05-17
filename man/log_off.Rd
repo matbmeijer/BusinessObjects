@@ -7,7 +7,7 @@
 log_off(domain)
 }
 \arguments{
-\item{domain}{SAP Business Objects domain to log into}
+\item{domain}{SAP Business Objects domain to log off from}
 }
 \value{
 Does not return any object, only a success message, as SAP API token is removed from the environment.
