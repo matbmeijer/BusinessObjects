@@ -160,6 +160,7 @@ get_bo_document_schedules <- function(domain, document_id){
   col_names <- gsub("^X\\.", "", col_names)
   col_names <- gsub("\\.\\.", "", col_names)
   colnames(df) <- col_names
+  df$updated <- as.POSIXct(df$updated, format = "%Y-%m-%dT%H:%M:%S")
   return(df)
 }
 
