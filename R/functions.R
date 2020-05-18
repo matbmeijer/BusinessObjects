@@ -72,13 +72,12 @@ log_on <- function(domain, username, password, authentication_type="secLDAP"){
                  get_token_request$status_code,
                  httr::http_status(get_token_request$status_code)$message),
          call. = FALSE)
+  }else if(get_token_request$status_code==200){
+    message("Logon process succesfull. SAP Logon Token will be saved into system environment.")
   }
   # Set token to environment variable
   token<-c("X-SAP-LogonToken"=get_token_request$headers[["x-sap-logontoken"]])
   Sys.setenv("x_sap_logontoken"=token)
-  if(get_token_request$status_code==200){
-    message("Logon process succesfull. SAP Logon Token saved into system environment.")
-  }
 }
 
 #' @title Logs off from the SAP Business Objects
@@ -102,18 +101,13 @@ log_off <- function(domain){
                         httr::content_type_xml(),
                         httr::accept_json(),
                         httr::add_headers(get_token()))
-  # Ensure request is in json format
-  if (httr::http_type(request) != "application/json") {
-    stop("API did not return json", call. = FALSE)
-  }
   # Stop if errors
   if (httr::http_error(request)) {
     stop(sprintf("Error Code %s - %s",
                  request$status_code,
                  httr::http_status(request$status_code)$message),
          call. = FALSE)
-  }
-  if(request$status_code==200){
+  }else if(request$status_code==200){
     Sys.unsetenv("x_sap_logontoken")
     message("Logoff process succesfull. SAP Logon Token deleted from system environment.")
   }
