@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Function reference • BusinessObjects</title>
+<title>Retrieving the Connections — get_bo_connections • BusinessObjects</title>
 
 
 <!-- jquery -->
@@ -39,7 +39,8 @@
 
 
 
-<meta property="og:title" content="Function reference" />
+<meta property="og:title" content="Retrieving the Connections — get_bo_connections" />
+<meta property="og:description" content="Retrieves the list of SAP Business Objects connections stored in the CMS repository that the end-user has access to." />
 
 
 
@@ -58,7 +59,7 @@
   </head>
 
   <body data-spy="scroll" data-target="#toc">
-    <div class="container template-reference-index">
+    <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -100,78 +101,59 @@
       </header>
 
 <div class="row">
-  <div class="contents col-md-9">
+  <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>Reference</h1>
+    <h1>Retrieving the Connections</h1>
+    
+    <div class="hidden name"><code>get_bo_connections.Rd</code></div>
     </div>
 
-    <table class="ref-index">
+    <div class="ref-description">
+    <p>Retrieves the list of SAP Business Objects connections stored in the CMS repository that the end-user has access to.</p>
+    </div>
 
-    <colgroup>
-      
-      <col class="alias" />
-      <col class="title" />
-    </colgroup>
+    <pre class="usage"><span class='fu'>get_bo_connections</span>(<span class='no'>domain</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>offset</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>limit</span> <span class='kw'>=</span> <span class='fl'>50</span>)</pre>
 
-    <tbody>
-      <tr>
-        <th colspan="2">
-          <h2 id="section-all-functions" class="hasAnchor"><a href="#section-all-functions" class="anchor"></a>All functions</h2>
-          <p class="section-desc"></p>
-        </th>
-      </tr>
-      
-      
-    </tbody><tbody>
-      
-      
-      <tr>
-        
-        <td>
-          <p><code><a href="get_bo_configuration.html">get_bo_configuration()</a></code> </p>
-        </td>
-        <td><p>Getting the Configuration parameters</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="get_bo_connections.html">get_bo_connections()</a></code> </p>
-        </td>
-        <td><p>Retrieving the Connections</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="get_bo_document_schedules.html">get_bo_document_schedules()</a></code> </p>
-        </td>
-        <td><p>Retrieve Business Objects document schedules</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="get_bo_schedule_details.html">get_bo_schedule_details()</a></code> </p>
-        </td>
-        <td><p>Retrieve Business Objects document' schedule details</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="get_bo_universes.html">get_bo_universes()</a></code> </p>
-        </td>
-        <td><p>Getting the List of SAP Business Objects universes</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="log_off.html">log_off()</a></code> </p>
-        </td>
-        <td><p>Logs off from the SAP Business Objects</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="log_on.html">log_on()</a></code> </p>
-        </td>
-        <td><p>Logs into SAP Business Objects</p></td>
-      </tr>
-    </tbody>
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>domain</th>
+      <td><p>SAP Business Objects domain</p></td>
+    </tr>
+    <tr>
+      <th>type</th>
+      <td><p>Indicates the connection type to be retrieved. Values are:</p><ul>
+<li><p><code>"Relational"</code></p></li>
+<li><p><code>"FlattenedOlap"</code></p></li>
+<li><p><code>"Olap"</code></p></li>
+<li><p><code>"DataFederator"</code></p></li>
+</ul><p>This parameter is optional. If not specified, all types of connections are retrieved.</p></td>
+    </tr>
+    <tr>
+      <th>offset</th>
+      <td><p>Indicates the position in the list, from which connections are returned.
+It must be greater than or equal to 0. The default value is  <code>0</code>. This parameter is optional.</p></td>
+    </tr>
+    <tr>
+      <th>limit</th>
+      <td><p>indicates the number of connections that you can list on one page. Its range is 1 to 50.
+This parameter is optional. The default value is <code>50</code>.</p></td>
+    </tr>
     </table>
-  </div>
 
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>Returns a tidy <code>data.frame</code> of SAP Business Objects connections</p>
+    <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
+
+    <p><a href='https://help.sap.com/viewer/58f583a7643e48cf944cf554eb961f5b/4.2/en-US/cc73a43eae76475291d35e1c3ef5451d.html'>https://help.sap.com/viewer/58f583a7643e48cf944cf554eb961f5b/4.2/en-US/cc73a43eae76475291d35e1c3ef5451d.html</a></p>
+
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
+<span class='fu'>get_bo_connections</span>(<span class='kw'>domain</span><span class='kw'>=</span><span class='st'>"YOUR_DOMAIN"</span>)
+}</div></pre>
+  </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
       <h2 data-toc-skip>Contents</h2>

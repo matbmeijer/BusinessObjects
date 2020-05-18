@@ -15,11 +15,17 @@ Objects is not Open Source.
 
 ### Current functionalities
 
-  - Log-on to SAP Business Objects REST API
-  - Retrieve schedules from a SAP Business Objects document ID
+  - Log-on to SAP Business Objects REST API: `log_on()`
+  - Retrieve schedules from a SAP Business Objects document ID:
+    `get_bo_document_schedules()`
   - Retrieve details (frequency, parameters, etc.) of a specific
-    schedule from a SAP Business Objects document ID
-  - Log-off from the SAP Business Objects REST API
+    schedule from a SAP Business Objects document ID:
+    `get_bo_schedule_details()`
+  - Retrieve SAP Business Objects connections: `get_bo_connections()`
+  - Retrieve SAP Business Objects configurations:
+    `get_bo_configuration()`
+  - Retrieve SAP Business Objects universes: `get_bo_universes()`
+  - Log-off from the SAP Business Objects REST API: `log_off()`
 
 [Documentation for the WEB
 API](https://help.sap.com/viewer/58f583a7643e48cf944cf554eb961f5b/4.2/en-US/7da2e2d66f701014aaab767bb0e91070.html)
