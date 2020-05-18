@@ -99,7 +99,6 @@ log_off <- function(domain){
   url <- httr::modify_url(domain, path = list("biprws", "logoff"))
   # POST request
   request <- httr::POST(url, 
-                        body = body,
                         httr::content_type_xml(),
                         httr::accept_json(),
                         httr::add_headers(get_token()))
