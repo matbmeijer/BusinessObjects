@@ -21,6 +21,8 @@ Objects is not Open Source.
   - Retrieve details (frequency, parameters, etc.) of a specific
     schedule from a SAP Business Objects document ID:
     `get_bo_schedule_details()`
+  - Upload Microsoft Excel to the SAP Business Objects CMS Repository:
+    `upload_excel_to_bo()`
   - Retrieve SAP Business Objects connections: `get_bo_connections()`
   - Retrieve SAP Business Objects configurations:
     `get_bo_configuration()`
