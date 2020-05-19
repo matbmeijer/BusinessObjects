@@ -21,12 +21,23 @@ knitr::opts_chunk$set(
 This packages is an API wrapper of the SAP Business Objects API for the R language.
 This package will probably never see CRAN as SAP Business Objects is not Open Source.
 
+## Installation
+
+You can install the latest release of this package from [Github](https://github.com/matbmeijer/JirAgileR) with the following commands in `R`:
+
+```{r, eval=FALSE} 
+if (!require("devtools")) install.packages("devtools")
+devtools::install_github("matbmeijer/BusinessObjects")
+```
+
+
 ### Current functionalities
 
 * Log-on to SAP Business Objects REST API: `log_on()`
 * Retrieve schedules from a SAP Business Objects document ID: `get_bo_document_schedules()`
 * Retrieve details (frequency, parameters, etc.) of a specific schedule from a SAP Business Objects document ID: `get_bo_schedule_details()`
-* Upload Microsoft Excel to the SAP Business Objects CMS Repository: `upload_excel_to_bo()`
+* Upload Microsoft Excel to the SAP Business Objects' CMS Repository: `upload_excel_to_bo()`
+* Update a Microsoft Excel located in te SAP Business Objects' CMS Repository: `update_bo_excel_file()`
 * Retrieve SAP Business Objects connections: `get_bo_connections()`
 * Retrieve SAP Business Objects configurations: `get_bo_configuration()`
 * Retrieve SAP Business Objects universes: `get_bo_universes()`

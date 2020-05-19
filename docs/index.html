@@ -66,6 +66,12 @@
 <!-- badges: end -->
 <p><strong>🚧 UNDER CONSTRUCTION</strong></p>
 <p>This packages is an API wrapper of the SAP Business Objects API for the R language. This package will probably never see CRAN as SAP Business Objects is not Open Source.</p>
+<div id="installation" class="section level2">
+<h2 class="hasAnchor">
+<a href="#installation" class="anchor"></a>Installation</h2>
+<p>You can install the latest release of this package from <a href="https://github.com/matbmeijer/JirAgileR">Github</a> with the following commands in <code>R</code>:</p>
+<div class="sourceCode" id="cb1"><pre class="r"><span class="kw">if</span> (!<span class="fu"><a href="https://rdrr.io/r/base/library.html">require</a></span>(<span class="st">"devtools"</span>)) <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"devtools"</span>)
+<span class="kw pkg">devtools</span><span class="kw ns">::</span><span class="fu"><a href="https://devtools.r-lib.org//reference/remote-reexports.html">install_github</a></span>(<span class="st">"matbmeijer/BusinessObjects"</span>)</pre></div>
 <div id="current-functionalities" class="section level3">
 <h3 class="hasAnchor">
 <a href="#current-functionalities" class="anchor"></a>Current functionalities</h3>
@@ -76,7 +82,9 @@
 </li>
 <li>Retrieve details (frequency, parameters, etc.) of a specific schedule from a SAP Business Objects document ID: <code><a href="reference/get_bo_schedule_details.html">get_bo_schedule_details()</a></code>
 </li>
-<li>Upload Microsoft Excel to the SAP Business Objects CMS Repository: <code><a href="reference/upload_excel_to_bo.html">upload_excel_to_bo()</a></code>
+<li>Upload Microsoft Excel to the SAP Business Objects’ CMS Repository: <code><a href="reference/upload_excel_to_bo.html">upload_excel_to_bo()</a></code>
+</li>
+<li>Update a Microsoft Excel located in te SAP Business Objects’ CMS Repository: <code>update_bo_excel_file()</code>
 </li>
 <li>Retrieve SAP Business Objects connections: <code><a href="reference/get_bo_connections.html">get_bo_connections()</a></code>
 </li>
@@ -88,6 +96,7 @@
 </li>
 </ul>
 <p><a href="https://help.sap.com/viewer/58f583a7643e48cf944cf554eb961f5b/4.2/en-US/7da2e2d66f701014aaab767bb0e91070.html">Documentation for the WEB API</a></p>
+</div>
 </div>
 </div>
   </div>

@@ -424,3 +424,53 @@ upload_excel_to_bo <- function(domain, excel_file_path, folder_id){
   message(content$success$message)
 }
 
+
+#' @title Update an Excel File from SAP Business Objects
+#' @description Updates an already-stored Microsoft Excel file in the CMS repository.
+#' The current file and the one to upload must have the same file structure (columns number, names, and order).
+#' @param domain SAP Business Objects domain 
+#' @param excel_file_path Location of the Excel file. Must include directory, file name and file extension. 
+#' Must be a Microsoft Excel 2003 or Microsoft Excel 2007 format file.
+#' @param spreadsheet_id ID of the Excel file in the CMS repository.
+#' @return Returns a message stating the success or failure of the request.
+#' @author Matthias Brenninkmeijer - \href{https://github.com/matbmeijer}{https://github.com/matbmeijer}
+#' @references \url{https://help.sap.com/viewer/58f583a7643e48cf944cf554eb961f5b/4.2/en-US/cb615e388c784ef193c1873455e7ae39.html}
+#' @examples
+#' \dontrun{
+#' spreadsheet_id(domain = "YOUR_DOMAIN",
+#'                    excel_file_path = "/Users/YOurUsername/Downloads/example_file.xlsx",
+#'                    spreadsheet_id = 123456
+#' )
+#' }
+#' @export
+
+update_bo_excel_file <- function(domain, excel_file_path, spreadsheet_id){
+  # Build url
+  url <- httr::modify_url(domain, path = c("biprws/raylight/v1", "spreadsheets", spreadsheet_id))
+  # Create body
+  body <- list(
+    attachmentContent = httr::upload_file(excel_file_path)
+  )
+  # PUT request
+  request <- httr::PUT(url = url, body = body, encode="multipart",
+                       httr::accept_json(),
+                       httr::add_headers("Content-Type" = "multipart/form-data", get_token())
+  )
+  # Ensure request is in json format
+  if (httr::http_type(request) != "application/json") {
+    stop("API did not return json", call. = FALSE)
+  }
+  # Stop if errors
+  if (httr::http_error(request)) {
+    stop(sprintf("Error Code %s - %s",
+                 request$status_code,
+                 httr::http_status(request$status_code)$message),
+         call. = FALSE)
+  }
+  # Read content
+  content <- jsonlite::fromJSON(httr::content(request, "text",
+                                              encoding = "UTF-8"),
+                                simplifyDataFrame = TRUE)
+  # Message
+  message(content$success$message)
+}
