@@ -43,5 +43,11 @@ devtools::install_github("matbmeijer/BusinessObjects")
     `get_bo_universe_details()`
   - Log-off from the SAP Business Objects REST API: `log_off()`
 
-[Documentation for the WEB REST
-API](https://help.sap.com/viewer/58f583a7643e48cf944cf554eb961f5b/4.2/en-US/7da2e2d66f701014aaab767bb0e91070.html)
+### Documentation
+
+  - Full R package documentation ca be found here:
+    <https://matbmeijer.github.io/BusinessObjects>
+
+  - Further documentation about the SAP BusinessObjects API can be found
+    here: [Documentation for the WEB REST
+    API](https://help.sap.com/viewer/58f583a7643e48cf944cf554eb961f5b/4.2/en-US/7da2e2d66f701014aaab767bb0e91070.html)
