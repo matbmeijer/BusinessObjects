@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Getting the List of SAP Business Objects universes — get_bo_universes • BusinessObjects</title>
+<title>Getting the details of a SAP Business Objects' universe — get_bo_universe_details • BusinessObjects</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,8 @@
 
 
 
-<meta property="og:title" content="Getting the List of SAP Business Objects universes — get_bo_universes" />
-<meta property="og:description" content="Gets the list of UNX and UNV universes stored in the CMS repository." />
+<meta property="og:title" content="Getting the details of a SAP Business Objects' universe — get_bo_universe_details" />
+<meta property="og:description" content="Gets the details of a UNX or UNV universe referenced by its ID." />
 
 
 
@@ -103,16 +103,16 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Getting the List of SAP Business Objects universes</h1>
+    <h1>Getting the details of a SAP Business Objects' universe</h1>
     
-    <div class="hidden name"><code>get_bo_universes.Rd</code></div>
+    <div class="hidden name"><code>get_bo_universe_details.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Gets the list of UNX and UNV universes stored in the CMS repository.</p>
+    <p>Gets the details of a UNX or UNV universe referenced by its ID.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>get_bo_universes</span>(<span class='no'>domain</span>, <span class='kw'>offset</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>limit</span> <span class='kw'>=</span> <span class='fl'>50</span>)</pre>
+    <pre class="usage"><span class='fu'>get_bo_universe_details</span>(<span class='no'>domain</span>, <span class='no'>universe_id</span>, <span class='kw'>aggregated</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -122,27 +122,26 @@
       <td><p>SAP Business Objects domain</p></td>
     </tr>
     <tr>
-      <th>offset</th>
-      <td><p>Indicates the position in the list, from which universes are returned.
-It must be greater than or equal to 0. The default value is 0. This parameter is optional. The default value is <code>0</code>.</p></td>
+      <th>universe_id</th>
+      <td><p>Universe ID from which to obtain the details</p></td>
     </tr>
     <tr>
-      <th>limit</th>
-      <td><p>Indicates the number of universes that you can list on one page. The range is from 1 to 50.
-The default value is 10. This parameter is optional. The default value is <code>50</code>.</p></td>
+      <th>aggregated</th>
+      <td><p>Is an optional, boolean/logical parameter that indicates if the outline must be aggregated. Default value is <code>FALSE</code>.</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>Returns a tidy <code>data.frame</code> of SAP Business Objects Universes</p>
+    <p>Returns the SAP Business Objects Universes details</p>
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
-    <p><a href='https://help.sap.com/viewer/58f583a7643e48cf944cf554eb961f5b/4.2/en-US/ec558f026fdb101497906a7cb0e91070.html'>https://help.sap.com/viewer/58f583a7643e48cf944cf554eb961f5b/4.2/en-US/ec558f026fdb101497906a7cb0e91070.html</a></p>
+    <p><a href='https://help.sap.com/viewer/58f583a7643e48cf944cf554eb961f5b/4.2/en-US/ec5584596fdb101497906a7cb0e91070.html'>https://help.sap.com/viewer/58f583a7643e48cf944cf554eb961f5b/4.2/en-US/ec5584596fdb101497906a7cb0e91070.html</a></p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
-<span class='fu'>get_bo_universes</span>(<span class='kw'>domain</span><span class='kw'>=</span><span class='st'>"YOUR_DOMAIN"</span>)
+<span class='fu'>get_bo_universe_details</span>(<span class='kw'>domain</span><span class='kw'>=</span><span class='st'>"YOUR_DOMAIN"</span>,
+                        <span class='kw'>universe_id</span><span class='kw'>=</span><span class='fl'>12345</span>)
 }</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

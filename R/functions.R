@@ -329,7 +329,7 @@ get_bo_configuration <- function(domain, type="functions"){
 #'  It must be greater than or equal to 0. The default value is 0. This parameter is optional. The default value is \code{0}.
 #' @param limit  Indicates the number of universes that you can list on one page. The range is from 1 to 50.
 #'  The default value is 10. This parameter is optional. The default value is \code{50}.
-#' @return Returns a tidy \code{data.frame} of SAP Business Objects Universes details
+#' @return Returns a tidy \code{data.frame} of SAP Business Objects Universes
 #' @author Matthias Brenninkmeijer - \href{https://github.com/matbmeijer}{https://github.com/matbmeijer}
 #' @references \url{https://help.sap.com/viewer/58f583a7643e48cf944cf554eb961f5b/4.2/en-US/ec558f026fdb101497906a7cb0e91070.html}
 #' @examples
@@ -367,6 +367,48 @@ get_bo_universes <- function(domain, offset=0, limit=50){
                                               encoding = "UTF-8"),
                                 simplifyDataFrame = TRUE)
   return(content$universes$universe)
+}
+
+#' @title Getting the details of a SAP Business Objects' universe
+#' @description Gets the details of a UNX or UNV universe referenced by its ID.
+#' @param domain SAP Business Objects domain
+#' @param universe_id Universe ID from which to obtain the details
+#' @param aggregated Is an optional, boolean/logical parameter that indicates if the outline must be aggregated. Default value is \code{FALSE}.
+#' @return Returns the SAP Business Objects Universes details
+#' @author Matthias Brenninkmeijer - \href{https://github.com/matbmeijer}{https://github.com/matbmeijer}
+#' @references \url{https://help.sap.com/viewer/58f583a7643e48cf944cf554eb961f5b/4.2/en-US/ec5584596fdb101497906a7cb0e91070.html}
+#' @examples
+#' \dontrun{
+#' get_bo_universe_details(domain="YOUR_DOMAIN",
+#'                         universe_id=12345)
+#' }
+#' @export
+
+get_bo_universe_details <- function(domain, universe_id, aggregated=FALSE){
+  # Build URL
+  url <- httr::modify_url(domain,
+                          path = list("biprws/raylight/v1",
+                                      "universes", universe_id),
+                          query=list(aggregated=tolower(aggregated)))
+  # Get query
+  request <- httr::GET(url,
+                       httr::accept_json(),
+                       httr::add_headers(get_token()))
+  # Ensure request is in json format
+  if (httr::http_type(request) != "application/json") {
+    stop("API did not return json", call. = FALSE)
+  }
+  # Stop if errors
+  if (httr::http_error(request)) {
+    stop(sprintf("Error Code %s - %s",
+                 request$status_code,
+                 httr::http_status(request$status_code)$message),
+         call. = FALSE)
+  }
+  # Format the data to a data.frame
+  content <- jsonlite::fromJSON(httr::content(request, "text",
+                                              encoding = "UTF-8"))
+  return(content$universe)
 }
 
 

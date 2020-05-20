@@ -61,20 +61,20 @@
   <div class="contents col-md-9">
 <div id="businessobjects" class="section level1">
 <div class="page-header"><h1 class="hasAnchor">
-<a href="#businessobjects" class="anchor"></a>BusinessObjects</h1></div>
+<a href="#businessobjects" class="anchor"></a>BusinessObjects 📊</h1></div>
 <!-- badges: start -->
 <!-- badges: end -->
-<p><strong>🚧 UNDER CONSTRUCTION</strong></p>
-<p>This packages is an API wrapper of the SAP Business Objects API for the R language. This package will probably never see CRAN as SAP Business Objects is not Open Source.</p>
-<div id="installation" class="section level2">
-<h2 class="hasAnchor">
-<a href="#installation" class="anchor"></a>Installation</h2>
+<p>This packages is an API wrapper of the SAP Business Objects API for the R language. It allows to connect R to SAP Business Objects to automate and build multiple workflows from within R. This package will probably never see CRAN as SAP Business Objects is not o source.</p>
+<div id="installation" class="section level3">
+<h3 class="hasAnchor">
+<a href="#installation" class="anchor"></a>Installation</h3>
 <p>You can install the latest release of this package from <a href="https://github.com/matbmeijer/JirAgileR">Github</a> with the following commands in <code>R</code>:</p>
 <div class="sourceCode" id="cb1"><pre class="r"><span class="kw">if</span> (!<span class="fu"><a href="https://rdrr.io/r/base/library.html">require</a></span>(<span class="st">"devtools"</span>)) <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"devtools"</span>)
 <span class="kw pkg">devtools</span><span class="kw ns">::</span><span class="fu"><a href="https://devtools.r-lib.org//reference/remote-reexports.html">install_github</a></span>(<span class="st">"matbmeijer/BusinessObjects"</span>)</pre></div>
+</div>
 <div id="current-functionalities" class="section level3">
 <h3 class="hasAnchor">
-<a href="#current-functionalities" class="anchor"></a>Current functionalities</h3>
+<a href="#current-functionalities" class="anchor"></a>Current functionalities 🔧</h3>
 <ul>
 <li>Log-on to SAP Business Objects REST API: <code><a href="reference/log_on.html">log_on()</a></code>
 </li>
@@ -92,11 +92,12 @@
 </li>
 <li>Retrieve SAP Business Objects universes: <code><a href="reference/get_bo_universes.html">get_bo_universes()</a></code>
 </li>
+<li>obtain the details of a SAP Business Objects universe: <code>get_bo_universe_details()</code>
+</li>
 <li>Log-off from the SAP Business Objects REST API: <code><a href="reference/log_off.html">log_off()</a></code>
 </li>
 </ul>
-<p><a href="https://help.sap.com/viewer/58f583a7643e48cf944cf554eb961f5b/4.2/en-US/7da2e2d66f701014aaab767bb0e91070.html">Documentation for the WEB API</a></p>
-</div>
+<p><a href="https://help.sap.com/viewer/58f583a7643e48cf944cf554eb961f5b/4.2/en-US/7da2e2d66f701014aaab767bb0e91070.html">Documentation for the WEB REST API</a></p>
 </div>
 </div>
   </div>

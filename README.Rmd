@@ -11,17 +11,15 @@ knitr::opts_chunk$set(
 )
 ```
 
-# BusinessObjects
+# BusinessObjects `r emo::ji("bar_chart")`
 
 <!-- badges: start -->
 <!-- badges: end -->
 
-**`r emo::ji("construction")` UNDER CONSTRUCTION**
+This packages is an API wrapper of the SAP Business Objects API for the R language. It allows to connect R to SAP Business Objects to automate and build multiple workflows from within R.
+This package will probably never see CRAN as SAP Business Objects is not o source.
 
-This packages is an API wrapper of the SAP Business Objects API for the R language.
-This package will probably never see CRAN as SAP Business Objects is not Open Source.
-
-## Installation
+### Installation
 
 You can install the latest release of this package from [Github](https://github.com/matbmeijer/JirAgileR) with the following commands in `R`:
 
@@ -30,8 +28,7 @@ if (!require("devtools")) install.packages("devtools")
 devtools::install_github("matbmeijer/BusinessObjects")
 ```
 
-
-### Current functionalities
+### Current functionalities `r emo::ji("wrench")`
 
 * Log-on to SAP Business Objects REST API: `log_on()`
 * Retrieve schedules from a SAP Business Objects document ID: `get_bo_document_schedules()`
@@ -41,6 +38,7 @@ devtools::install_github("matbmeijer/BusinessObjects")
 * Retrieve SAP Business Objects connections: `get_bo_connections()`
 * Retrieve SAP Business Objects configurations: `get_bo_configuration()`
 * Retrieve SAP Business Objects universes: `get_bo_universes()`
+* obtain the details of a SAP Business Objects universe: `get_bo_universe_details()`
 * Log-off from the SAP Business Objects REST API: `log_off()`
 
-[Documentation for the WEB API](https://help.sap.com/viewer/58f583a7643e48cf944cf554eb961f5b/4.2/en-US/7da2e2d66f701014aaab767bb0e91070.html)
+[Documentation for the WEB REST API](https://help.sap.com/viewer/58f583a7643e48cf944cf554eb961f5b/4.2/en-US/7da2e2d66f701014aaab767bb0e91070.html)

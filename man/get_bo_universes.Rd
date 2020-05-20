@@ -16,7 +16,7 @@ It must be greater than or equal to 0. The default value is 0. This parameter is
 The default value is 10. This parameter is optional. The default value is \code{50}.}
 }
 \value{
-Returns a tidy \code{data.frame} of SAP Business Objects Universes details
+Returns a tidy \code{data.frame} of SAP Business Objects Universes
 }
 \description{
 Gets the list of UNX and UNV universes stored in the CMS repository.

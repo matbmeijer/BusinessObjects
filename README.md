@@ -1,19 +1,18 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# BusinessObjects
+# BusinessObjects 📊
 
 <!-- badges: start -->
 
 <!-- badges: end -->
 
-**🚧 UNDER CONSTRUCTION**
-
 This packages is an API wrapper of the SAP Business Objects API for the
-R language. This package will probably never see CRAN as SAP Business
-Objects is not Open Source.
+R language. It allows to connect R to SAP Business Objects to automate
+and build multiple workflows from within R. This package will probably
+never see CRAN as SAP Business Objects is not o source.
 
-## Installation
+### Installation
 
 You can install the latest release of this package from
 [Github](https://github.com/matbmeijer/JirAgileR) with the following
@@ -24,7 +23,7 @@ if (!require("devtools")) install.packages("devtools")
 devtools::install_github("matbmeijer/BusinessObjects")
 ```
 
-### Current functionalities
+### Current functionalities 🔧
 
   - Log-on to SAP Business Objects REST API: `log_on()`
   - Retrieve schedules from a SAP Business Objects document ID:
@@ -40,7 +39,9 @@ devtools::install_github("matbmeijer/BusinessObjects")
   - Retrieve SAP Business Objects configurations:
     `get_bo_configuration()`
   - Retrieve SAP Business Objects universes: `get_bo_universes()`
+  - obtain the details of a SAP Business Objects universe:
+    `get_bo_universe_details()`
   - Log-off from the SAP Business Objects REST API: `log_off()`
 
-[Documentation for the WEB
+[Documentation for the WEB REST
 API](https://help.sap.com/viewer/58f583a7643e48cf944cf554eb961f5b/4.2/en-US/7da2e2d66f701014aaab767bb0e91070.html)
