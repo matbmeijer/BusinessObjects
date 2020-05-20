@@ -17,7 +17,6 @@ knitr::opts_chunk$set(
 <!-- badges: end -->
 
 This packages is an API wrapper of the SAP Business Objects API for the R language. It allows to connect R to SAP Business Objects to automate and build multiple workflows from within R.
-This package will probably never see CRAN as SAP Business Objects is not o source.
 
 ### Installation
 
@@ -49,3 +48,14 @@ devtools::install_github("matbmeijer/BusinessObjects")
 
 * Further documentation about the SAP BusinessObjects API can be found here:
 [Documentation for the WEB REST API](https://help.sap.com/viewer/58f583a7643e48cf944cf554eb961f5b/4.2/en-US/7da2e2d66f701014aaab767bb0e91070.html)
+
+### Code of Conduct
+
+Please note that the 'BusinessObjects' project is released with a
+[Contributor Code of Conduct](CODE_OF_CONDUCT.md).
+By contributing to this project, you agree to abide by its terms.
+
+### License
+This package will probably never see CRAN as SAP Business Objects is not open source. Nonetheless, all the code here follows the following licensing:
+[MIT © Matthias Brenninkmeijer](https://github.com/matbmeijer/BusinessObjects/blob/master/LICENSE.md)
+

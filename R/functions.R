@@ -26,7 +26,7 @@ unnest_df <- function(x) {
 #' @param domain SAP Business Objects domain to log into
 #' @param username SAP Business Objects username
 #' @param password SAP Business Objects password
-#' @param authentication_type Athentication Type to logon into SAP Business Objects. Defaults to \code{secLDAP}. Must be one of the following:
+#' @param authentication_type Authentication Type to logon into SAP Business Objects. Defaults to \code{secLDAP}. Must be one of the following:
 #' \itemize{
 #' \item secLDAP
 #' \item secEnterprise
@@ -117,7 +117,7 @@ log_off <- function(domain){
 #' @description Retrieves Gets the details of a Web Intelligence document and returns a tidy \code{data.frame} with detailed information.
 #' @param domain SAP Business Objects domain
 #' @param document_id Document ID of the SAP Business Objects Document
-#' @param tracker_document_id Optional parameter. Identifier of a reference document for trackdata feature.
+#' @param tracker_document_id Optional parameter. Identifier of a reference document for track-data feature.
 #' Must be provided only when the document state is unused.
 #' @return Returns a tidy \code{data.frame} with detailed information about the document.
 #' @author Matthias Brenninkmeijer - \href{https://github.com/matbmeijer}{https://github.com/matbmeijer}

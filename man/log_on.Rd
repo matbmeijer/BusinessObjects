@@ -13,7 +13,7 @@ log_on(domain, username, password, authentication_type = "secLDAP")
 
 \item{password}{SAP Business Objects password}
 
-\item{authentication_type}{Athentication Type to logon into SAP Business Objects. Defaults to \code{secLDAP}. Must be one of the following:
+\item{authentication_type}{Authentication Type to logon into SAP Business Objects. Defaults to \code{secLDAP}. Must be one of the following:
 \itemize{
 \item secLDAP
 \item secEnterprise

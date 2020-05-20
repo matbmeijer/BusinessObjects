@@ -11,7 +11,7 @@ get_bo_document_details(domain, document_id, tracker_document_id = NULL)
 
 \item{document_id}{Document ID of the SAP Business Objects Document}
 
-\item{tracker_document_id}{Optional parameter. Identifier of a reference document for trackdata feature.
+\item{tracker_document_id}{Optional parameter. Identifier of a reference document for track-data feature.
 Must be provided only when the document state is unused.}
 }
 \value{
