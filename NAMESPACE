@@ -2,6 +2,7 @@
 
 export(get_bo_configuration)
 export(get_bo_connections)
+export(get_bo_document_details)
 export(get_bo_document_schedules)
 export(get_bo_schedule_details)
 export(get_bo_universe_details)

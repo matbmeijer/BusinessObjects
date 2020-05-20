@@ -23,6 +23,9 @@ get_bo_document_schedules(domain="YOUR_DOMAIN",
                           document_id="YOUR_DOCUMENT_ID")
 }
 }
+\references{
+\url{https://help.sap.com/viewer/58f583a7643e48cf944cf554eb961f5b/4.2/en-US/7da1d59c6f701014aaab767bb0e91070.html}
+}
 \author{
 Matthias Brenninkmeijer - \href{https://github.com/matbmeijer}{https://github.com/matbmeijer}
 }

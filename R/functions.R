@@ -113,12 +113,63 @@ log_off <- function(domain){
   }
 }
 
+#' @title Retrieve Business Objects document details
+#' @description Retrieves Gets the details of a Web Intelligence document and returns a tidy \code{data.frame} with detailed information.
+#' @param domain SAP Business Objects domain
+#' @param document_id Document ID of the SAP Business Objects Document
+#' @param tracker_document_id Optional parameter. Identifier of a reference document for trackdata feature.
+#' Must be provided only when the document state is unused.
+#' @return Returns a tidy \code{data.frame} with detailed information about the document.
+#' @author Matthias Brenninkmeijer - \href{https://github.com/matbmeijer}{https://github.com/matbmeijer}
+#' @references \url{https://help.sap.com/viewer/58f583a7643e48cf944cf554eb961f5b/4.2/en-US/ec5627ba6fdb101497906a7cb0e91070.html}
+#' @examples
+#' \dontrun{
+#' get_bo_document_details(domain="YOUR_DOMAIN",
+#'                        document_id="YOUR_DOCUMENT_ID")
+#' }
+#' @export
+
+get_bo_document_details <- function(domain, document_id, tracker_document_id=NULL){
+  # Build URL
+  url <- httr::modify_url(domain,
+                          path = c("biprws/raylight/v1",
+                                   "documents",
+                                   document_id),
+                          query=list("trackerDocumentId"=tracker_document_id))
+  # GET request
+  request <- httr::GET(url,
+                       httr::accept_json(),
+                       httr::add_headers(get_token()))
+  # Ensure request is in json format
+  if (httr::http_type(request) != "application/json") {
+    stop("API did not return json", call. = FALSE)
+  }
+  
+  # Stop if errors
+  if (httr::http_error(request)) {
+    stop(sprintf("Error Code %s - %s",
+                 request$status_code,
+                 httr::http_status(request$status_code)$message),
+         call. = FALSE)
+  }
+  #Format the data to a data.frame
+  content <- jsonlite::fromJSON(httr::content(request, "text",
+                                              encoding = "UTF-8"),
+                                simplifyDataFrame = TRUE)
+  
+  
+  df <- unnest_df(data.frame(content$document[lengths(content$document)>0], stringsAsFactors = FALSE))
+  df$updated <- as.POSIXct(df$updated, format = "%Y-%m-%dT%H:%M:%S")
+  return(df)
+}
+
 #' @title Retrieve Business Objects document schedules
 #' @description Retrieves the schedules for a specific document ID and returns a tidy \code{data.frame} with detailed information.
 #' @param domain SAP Business Objects domain
 #' @param document_id Document ID of the SAP Business Objects Document
 #' @return Returns a tidy \code{data.frame} with detailed information about the documents' schedules.
 #' @author Matthias Brenninkmeijer - \href{https://github.com/matbmeijer}{https://github.com/matbmeijer}
+#' @references \url{https://help.sap.com/viewer/58f583a7643e48cf944cf554eb961f5b/4.2/en-US/7da1d59c6f701014aaab767bb0e91070.html}
 #' @examples
 #' \dontrun{
 #' get_bo_document_schedules(domain="YOUR_DOMAIN",
@@ -129,8 +180,7 @@ log_off <- function(domain){
 get_bo_document_schedules <- function(domain, document_id){
   # Build URL
   url <- httr::modify_url(domain,
-                          path = list("biprws",
-                                      "raylight",
+                          path = list("biprws/raylight",
                                       "v1",
                                       "documents",
                                       document_id,
