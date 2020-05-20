@@ -346,7 +346,7 @@ get_bo_connections <- function(domain, type=NULL, offset=0, limit=50){
 get_bo_configuration <- function(domain, type="functions"){
   # Build URL
   url <- httr::modify_url(domain,
-                          path = list("biprws", "raylight" , "v1",
+                          path = list("biprws/raylight/v1",
                                       "configuration",
                                       type))
   # GET request
