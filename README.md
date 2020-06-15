@@ -25,6 +25,8 @@ devtools::install_github("matbmeijer/BusinessObjects")
 ### Current functionalities 🔧
 
   - Log-on to SAP Business Objects REST API: `log_on()`
+  - Retrieve children elements from a CMS repository folder:
+    `get_bo_folder_ressources()`
   - Retrieve details from a SAP Business Objects document ID:
     `get_bo_document_details()`
   - Retrieve schedules from a SAP Business Objects document ID:

@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Function reference • BusinessObjects</title>
+<title>Retrieve all the children elements of a folder — get_bo_folder_ressources • BusinessObjects</title>
 
 
 <!-- jquery -->
@@ -39,7 +39,9 @@
 
 
 
-<meta property="og:title" content="Function reference" />
+<meta property="og:title" content="Retrieve all the children elements of a folder — get_bo_folder_ressources" />
+<meta property="og:description" content="Retrieves all the children ressources with name, description, id and type from a given Folder ID.
+The current file and the one to upload must have the same file structure (columns number, names, and order)." />
 
 
 
@@ -58,7 +60,7 @@
   </head>
 
   <body data-spy="scroll" data-target="#toc">
-    <div class="container template-reference-index">
+    <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -100,108 +102,72 @@
       </header>
 
 <div class="row">
-  <div class="contents col-md-9">
+  <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>Reference</h1>
+    <h1>Retrieve all the children elements of a folder</h1>
+    
+    <div class="hidden name"><code>get_bo_folder_ressources.Rd</code></div>
     </div>
 
-    <table class="ref-index">
+    <div class="ref-description">
+    <p>Retrieves all the children ressources with name, description, id and type from a given Folder ID.
+The current file and the one to upload must have the same file structure (columns number, names, and order).</p>
+    </div>
 
-    <colgroup>
-      
-      <col class="alias" />
-      <col class="title" />
-    </colgroup>
+    <pre class="usage"><span class='fu'>get_bo_folder_ressources</span>(
+  <span class='no'>domain</span>,
+  <span class='no'>folder_id</span>,
+  <span class='kw'>type</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>page</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>pageSize</span> <span class='kw'>=</span> <span class='fl'>50</span>
+)</pre>
 
-    <tbody>
-      <tr>
-        <th colspan="2">
-          <h2 id="section-all-functions" class="hasAnchor"><a href="#section-all-functions" class="anchor"></a>All functions</h2>
-          <p class="section-desc"></p>
-        </th>
-      </tr>
-      
-      
-    </tbody><tbody>
-      
-      
-      <tr>
-        
-        <td>
-          <p><code><a href="get_bo_configuration.html">get_bo_configuration()</a></code> </p>
-        </td>
-        <td><p>Getting the Configuration parameters</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="get_bo_connections.html">get_bo_connections()</a></code> </p>
-        </td>
-        <td><p>Retrieving the Connections</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="get_bo_document_details.html">get_bo_document_details()</a></code> </p>
-        </td>
-        <td><p>Retrieve Business Objects document details</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="get_bo_document_schedules.html">get_bo_document_schedules()</a></code> </p>
-        </td>
-        <td><p>Retrieve Business Objects document schedules</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="get_bo_folder_ressources.html">get_bo_folder_ressources()</a></code> </p>
-        </td>
-        <td><p>Retrieve all the children elements of a folder</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="get_bo_schedule_details.html">get_bo_schedule_details()</a></code> </p>
-        </td>
-        <td><p>Retrieve Business Objects document' schedule details</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="get_bo_universe_details.html">get_bo_universe_details()</a></code> </p>
-        </td>
-        <td><p>Getting the details of a SAP Business Objects' universe</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="get_bo_universes.html">get_bo_universes()</a></code> </p>
-        </td>
-        <td><p>Getting the List of SAP Business Objects universes</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="log_off.html">log_off()</a></code> </p>
-        </td>
-        <td><p>Logs off from the SAP Business Objects</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="log_on.html">log_on()</a></code> </p>
-        </td>
-        <td><p>Logs into SAP Business Objects</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="update_bo_excel_file.html">update_bo_excel_file()</a></code> </p>
-        </td>
-        <td><p>Update an Excel File from SAP Business Objects</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="upload_excel_to_bo.html">upload_excel_to_bo()</a></code> </p>
-        </td>
-        <td><p>Upload an Excel File to SAP Business Objects</p></td>
-      </tr>
-    </tbody>
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>domain</th>
+      <td><p>SAP Business Objects domain</p></td>
+    </tr>
+    <tr>
+      <th>folder_id</th>
+      <td><p>Folder ID in the CMS repository of the folder to retrieve its children from (Equals to the <code>SI_ID</code> variable).</p></td>
+    </tr>
+    <tr>
+      <th>type</th>
+      <td><p>Optional parameter to define the type of elements to retrieve. Must be a single element (Equals to the <code>SI_KIND</code> variable).
+Some of the types of the elements to retrieve are the following (incomplete list):</p><ul>
+<li><p><code>"InfoView"</code></p></li>
+<li><p><code>"Webi"</code></p></li>
+<li><p><code>"Publication"</code></p></li>
+<li><p><code>"Folder"</code></p></li>
+</ul></td>
+    </tr>
+    <tr>
+      <th>page</th>
+      <td><p>For more than 50 elements within a folder pagination is necessary. Use this parameter to control pagination.</p></td>
+    </tr>
+    <tr>
+      <th>pageSize</th>
+      <td><p>Page size of the number of ressources to obtain. Maximum is 50, defaults to 50.</p></td>
+    </tr>
     </table>
-  </div>
 
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>Returns a tidy <code>data.frame</code> of all the children elements within the folder</p>
+    <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
+
+    <p><a href='https://help.sap.com/viewer/db6a17c0d1214fd6971de66ea0122378/4.2.3/en-US/45aa8bae6e041014910aba7db0e91070.html'>https://help.sap.com/viewer/db6a17c0d1214fd6971de66ea0122378/4.2.3/en-US/45aa8bae6e041014910aba7db0e91070.html</a></p>
+
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
+<span class='fu'>get_bo_folder_ressources</span>(<span class='kw'>domain</span> <span class='kw'>=</span> <span class='st'>"YOUR_DOMAIN"</span>,
+                         <span class='kw'>folder_id</span> <span class='kw'>=</span> <span class='fl'>12345</span>,
+                         <span class='kw'>type</span> <span class='kw'>=</span> <span class='no'>Webi</span>
+)
+}</div></pre>
+  </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
       <h2 data-toc-skip>Contents</h2>

@@ -529,7 +529,7 @@ upload_excel_to_bo <- function(domain, excel_file_path, folder_id){
 #' @references \url{https://help.sap.com/viewer/58f583a7643e48cf944cf554eb961f5b/4.2/en-US/cb615e388c784ef193c1873455e7ae39.html}
 #' @examples
 #' \dontrun{
-#' spreadsheet_id(domain = "YOUR_DOMAIN",
+#' update_bo_excel_file(domain = "YOUR_DOMAIN",
 #'                    excel_file_path = "/Users/YOurUsername/Downloads/example_file.xlsx",
 #'                    spreadsheet_id = 123456
 #' )
@@ -565,4 +565,59 @@ update_bo_excel_file <- function(domain, excel_file_path, spreadsheet_id){
                                 simplifyDataFrame = TRUE)
   # Message
   message(content$success$message)
+}
+
+
+#' @title Retrieve all the children elements of a folder
+#' @description Retrieves all the children ressources with name, description, id and type from a given Folder ID.
+#' The current file and the one to upload must have the same file structure (columns number, names, and order).
+#' @param domain SAP Business Objects domain 
+#' @param folder_id Folder ID in the CMS repository of the folder to retrieve its children from (Equals to the \code{SI_ID} variable).
+#' @param type Optional parameter to define the type of elements to retrieve. Must be a single element (Equals to the \code{SI_KIND} variable).
+#' Some of the types of the elements to retrieve are the following (incomplete list)
+#' \itemize{
+#' \item \code{"InfoView"}
+#' \item \code{"Webi"}
+#' \item \code{"Publication"}
+#' \item \code{"Folder"}
+#' }
+#' @param page For more than 50 elements within a folder pagination is necessary. Use this parameter to control pagination.
+#' @param pageSize Page size of the number of ressources to obtain. Maximum is 50, defaults to 50.
+#' @return Returns a tidy \code{data.frame} of all the children elements within the folder 
+#' @author Matthias Brenninkmeijer - \href{https://github.com/matbmeijer}{https://github.com/matbmeijer}
+#' @references \url{https://help.sap.com/viewer/db6a17c0d1214fd6971de66ea0122378/4.2.3/en-US/45aa8bae6e041014910aba7db0e91070.html}
+#' @examples
+#' \dontrun{
+#' get_bo_folder_ressources(domain = "YOUR_DOMAIN",
+#'                          folder_id = 12345,
+#'                          type = Webi
+#' )
+#' }
+#' @export
+
+get_bo_folder_ressources <- function(domain, folder_id, type=NULL, page=NULL, pageSize=50){
+  # Build url
+  url <- httr::modify_url(domain, path = c("/biprws/infostore",folder_id , "children"),
+                          query=list(type=type, page=page, pageSize=pageSize))
+  # Get query
+  request <- httr::GET(url,
+                       httr::accept_json(),
+                       httr::add_headers(get_token()))
+  # Ensure request is in json format
+  if (httr::http_type(request) != "application/json") {
+    stop("API did not return json", call. = FALSE)
+  }
+  # Stop if errors
+  if (httr::http_error(request)) {
+    stop(sprintf("Error Code %s - %s",
+                 request$status_code,
+                 httr::http_status(request$status_code)$message),
+         call. = FALSE)
+  }
+  # Read content
+  content <- jsonlite::fromJSON(httr::content(request, "text",
+                                              encoding = "UTF-8"),
+                                simplifyDataFrame = TRUE)
+  # Message
+  return(content$entries)
 }

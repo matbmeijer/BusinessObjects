@@ -23,7 +23,7 @@ The current file and the one to upload must have the same file structure (column
 }
 \examples{
 \dontrun{
-spreadsheet_id(domain = "YOUR_DOMAIN",
+update_bo_excel_file(domain = "YOUR_DOMAIN",
                    excel_file_path = "/Users/YOurUsername/Downloads/example_file.xlsx",
                    spreadsheet_id = 123456
 )
